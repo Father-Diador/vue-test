@@ -2,11 +2,11 @@
     <select v-model="value" @change="selectPerson">
         <option value="" disabled>Выберите</option>
         <option 
-          v-for="person in persons" 
-          :key="person.id" 
-          :value="person.name"
+          v-for="option in selectOptions" 
+          :key="option.id" 
+          :value="option.id"
         >
-            {{ person.name }}
+            {{ option.name }}
         </option>
     </select>
 </template>
@@ -15,7 +15,7 @@
 export default {
     props: {
       value: String,
-      persons: {
+      selectOptions: {
         type: Array,
         required: true,
       }

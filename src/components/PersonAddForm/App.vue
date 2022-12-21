@@ -11,9 +11,9 @@
         <label for="name">Имя</label>
         <input 
           name="name" 
-          type="text" 
+          type="text"
           v-model="person.name"
-          required
+          placeholder="Введите имя"
         >
       </div>
 
@@ -23,14 +23,14 @@
           name="telephone" 
           type="text" 
           v-model="person.telephone"
-          required
+          placeholder="Введите телефон"
         >
       </div>
 
       <div class="input-position">
         <label for="">Начальник</label>
         <PersonSelect 
-          :persons="persons"
+          :selectOptions="selectOptions"
           v-model="person.selectedPerson"
         />
       </div>
@@ -53,11 +53,12 @@ export default {
         name: '',
         telephone: '',
         selectedPerson: '',
+        subordinates: [],
       },
     }
   },
   props: {
-    persons: {
+    selectOptions: {
       type: Array,
       required: true,
     },
@@ -75,6 +76,7 @@ export default {
           name: '',
           telephone: '',
           selectedPerson: '',
+          subordinates: [],
         }
       } else {
         alert('Ошибка! Поля не заполнены!')

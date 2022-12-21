@@ -5,10 +5,9 @@
     <div class="table">
       <div class="sort-btn" @click="nameSort">Имя</div>
       <div class="sort-btn" @click="telephoneSort">Телефон</div>
-      <div>Начальник</div>
     </div>
 
-    <PersonSingle 
+    <PersonSingleCopy 
       v-for="person in sortedArray" 
       :key="person.id"
       :person="person"
@@ -18,10 +17,10 @@
 </template>
 
 <script>
-import PersonSingle from '../components/PersonSingle.vue'
+import PersonSingleCopy from '../components/PersonSingleCopy.vue'
 
 export default {
-  components: {PersonSingle},
+  components: {PersonSingleCopy},
   data() {
     return {
       active: false,
@@ -81,9 +80,10 @@ export default {
 .table{
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 .table div{
-  width: 33%;
+  width: 50%;
   padding: 20px;
   border: 2px solid #000;
 }
