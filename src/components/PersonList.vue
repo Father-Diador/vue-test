@@ -7,7 +7,7 @@
       <div class="sort-btn" @click="telephoneSort">Телефон</div>
     </div>
 
-    <PersonSingleCopy 
+    <PersonSingle 
       v-for="person in sortedArray" 
       :key="person.id"
       :person="person"
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import PersonSingleCopy from '../components/PersonSingleCopy.vue'
+import PersonSingle from '../components/PersonSingle.vue'
 
 export default {
-  components: {PersonSingleCopy},
+  components: {PersonSingle},
   data() {
     return {
       active: false,

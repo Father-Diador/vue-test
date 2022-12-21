@@ -2,39 +2,23 @@
     <div class="table">
 
         <div class="table-row">
-          <div class="table-field">{{ person.name }}</div>
-          <div class="table-field">{{ person.telephone }}</div>
+          <div class="table-field-first">{{ person.name }}</div>
+          <div class="table-field-second">{{ person.telephone }}</div>
         </div>
 
-        <div
-          v-for="subordinates in person.subordinates"
-          :key="subordinates.id"
-          class="table-row-subordinate"
-        >
-          <div class="table-row-subordinate-row">
-            <div class="table-field-subordinate">{{ subordinates.name }}</div>
-            <div class="table-field">{{ subordinates.telephone }}</div>
-          </div>
-          
-          <div
-            v-for="subordinates in subordinates.subordinates"
-            :key="subordinates.id"
-            class="table-row-subordinate"
-          >
-            <div class="table-row-subordinate-row">
-              <div class="table-field-subordinate">{{ subordinates.name }}</div>
-              <div class="table-field">{{ subordinates.telephone }}</div>
-            </div>
-
-          </div>
-
-        </div>
+        <PersonSingle
+            v-for="person in person.subordinates"
+            :key="person.id"
+            :person="person"
+            class="table-row-child"
+        />
 
     </div>
 </template>
 
 <script>
 export default {
+    name: 'PersonSingle',
   props: {
     person: {
       type: Object,
@@ -45,6 +29,9 @@ export default {
 </script>
 
 <style scoped>
+*{
+    box-sizing: border-box;
+}
 .table{
   display: flex;
   flex-direction: column;
@@ -52,26 +39,23 @@ export default {
 .table-row{
   display: flex;
   flex-direction: row;
+  position: relative;
+  justify-content: flex-end;
 }
-.table-row-subordinate{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-.table-row-subordinate-row{
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-.table-field{
-  width: 50%;
+.table-field-first{
+  width: 20vw;
   padding: 20px;
   border: 2px solid #000;
 }
-.table-field-subordinate{
-  margin-left: 10%;
-  width: 40%;
+.table-field-second{
+  width: 20vw;
   padding: 20px;
   border: 2px solid #000;
+}
+.table-row-child{
+    margin-left: 20px;
+}
+.table-row-child .table-field-first{
+    width: calc(20vw - 20px);
 }
 </style>
